@@ -1,0 +1,1 @@
+wandb agent $(wandb sweep sweep.yaml | tail -1 | awk '{print $NF}')
