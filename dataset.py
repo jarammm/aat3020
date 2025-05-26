@@ -25,20 +25,21 @@ class PersonaDataset(Dataset):
 
     def __getitem__(self, i):
         persona_tag = f"<formal>"
-        while True:
+        data = self.data.iloc[i]
+        for _ in range(15):
             persona = random.choice(self.persona_list)
-            target = self.data.loc[i, persona]
+            target = data[persona]
             if not pd.isna(target):
                 persona_tag = f"<{persona}>"
                 break
         
         # 2. source sentence
-        source = f"{persona_tag} {self.data.loc[i, 'formal']}"
+        source = f"{persona_tag} {self.data.iloc[i]['formal']}"
         source_ids = [self.bos] + self.tokenizer(source, add_special_tokens=False)["input_ids"] + [self.eos]
         source_attention_mask = [1] * len(source_ids)
 
         # 3. target sentence
-        target = str(self.data.loc[i, persona])
+        target = str(self.data.iloc[i][persona])
         target_ids = self.tokenizer(target, add_special_tokens=False)["input_ids"] + [self.eos]
 
         input_ids = self.padding_ids(source_ids, self.pad)
