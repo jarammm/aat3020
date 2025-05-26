@@ -35,7 +35,7 @@ def train():
     model.to(device)
 
     # 스페셜 토큰 등록
-    special_tokens = [f"<{p}>" for p in persona_list]
+    special_tokens = [f"<{p}>" for p in persona_list] + ['<formal>']
     tokenizer.add_special_tokens({"additional_special_tokens": special_tokens})
     model.resize_token_embeddings(len(tokenizer))
 
