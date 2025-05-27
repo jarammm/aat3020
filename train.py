@@ -11,8 +11,7 @@ model_name = "cosmoquester/bart-ko-base"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
-df = pd.read_csv("cleaned_smilestyle_dataset.tsv", sep="\t")
-
+df = pd.read_csv("train_dataset.csv", encoding='utf-8')
 
 persona_list = ['android', 'azae', 'chat', 'choding', 'emoticon', 'enfp',
                 'gentle', 'halbae', 'halmae', 'joongding', 'king', 'naruto',
@@ -38,10 +37,10 @@ training_args = Seq2SeqTrainingArguments(
     output_dir="./bart-finetuned",
     per_device_train_batch_size=16,
     learning_rate=5e-5,
-    num_train_epochs=5,
+    num_train_epochs=3,
     logging_steps=1,
     save_steps=200,
-    save_total_limit=2,
+    save_total_limit=5,
     eval_strategy="steps",
     eval_steps=200,
     report_to="wandb",
