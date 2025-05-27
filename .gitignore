@@ -2,4 +2,4 @@ __pycache__/
 *.ipynb
 wandb/
 sweep-output/
-bart-finetuned/
+models/
