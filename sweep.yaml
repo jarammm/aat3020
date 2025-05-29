@@ -6,9 +6,8 @@ metric:
 
 parameters:
   learning_rate:
-    min: 0.00002
-    max: 0.00006
+    values: [0.00002, 0.00004, 0.00006]
   per_device_train_batch_size:
     values: [8, 16, 32]
   num_train_epochs:
-    values: [3, 5]
+    values: [2, 3, 4]

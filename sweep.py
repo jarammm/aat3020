@@ -14,7 +14,7 @@ from utils import seed_everything
 
 
 persona_list = [
-    'android', 'azae', 'chat', 'choding', 'emoticon', 'enfp',
+    'android', 'informal', 'azae', 'chat', 'choding', 'emoticon', 'enfp',
     'gentle', 'halbae', 'halmae', 'joongding', 'king', 'naruto',
     'seonbi', 'sosim', 'translator'
 ]
