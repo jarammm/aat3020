@@ -24,7 +24,7 @@ class PersonaDataset(Dataset):
 
     def __getitem__(self, i):
         row = self.data.iloc[i]
-        persona_tag = f"<{row['label']}>"
+        persona_tag = f"<{self.persona_list[row['label']]}>"
         
         # 2. source sentence
         source = f"{persona_tag} {row['source']}"

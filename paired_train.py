@@ -13,9 +13,24 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 df = pd.read_csv("paired_dataset.csv", encoding='utf-8')
 
-persona_list = ['android', 'azae', 'chat', 'choding', 'emoticon', 'enfp',
-                'gentle', 'halbae', 'halmae', 'joongding', 'king', 'naruto',
-                'seonbi', 'sosim', 'translator']
+persona_list = {
+    'informal': '구어체',
+    'android': '안드로이드',
+    'azae': '아재',
+    'chat': '채팅',
+    'choding': '초등학생',
+    'emoticon': '이모티콘',
+    'enfp': 'enfp',
+    'gentle': '신사',
+    'halbae': '할아버지',
+    'halmae': '할머니',
+    'joongding': '중학생',
+    'king': '왕',
+    'naruto': '나루토',
+    'seonbi': '선비',
+    'sosim': '소심한',
+    'translator': '번역기'
+}
 
 
 print(len(df))
@@ -32,8 +47,8 @@ model.to(device)
 
 training_args = Seq2SeqTrainingArguments(
     output_dir="finetune",
-    per_device_train_batch_size=16,
-    learning_rate=5e-5,
+    per_device_train_batch_size=8,
+    learning_rate=4e-5,
     num_train_epochs=3,
     logging_steps=1,
     save_steps=200,

@@ -24,13 +24,13 @@ class PersonaDataset(Dataset):
         return seq + [pad_id] * (self.max_seq_len - len(seq))
 
     def __getitem__(self, i):
-        persona_tag = f"<formal>"
+        persona_tag = f"<문어체>"
         data = self.data.iloc[i]
         for _ in range(15):
-            persona = random.choice(self.persona_list)
+            persona = random.choice(self.persona_list.keys())
             target = data[persona]
             if not pd.isna(target):
-                persona_tag = f"<{persona}>"
+                persona_tag = f"<{self.persona_list[persona]}>"
                 break
         
         # 2. source sentence
