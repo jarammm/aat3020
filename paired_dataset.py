@@ -28,7 +28,7 @@ class PersonaDataset(Dataset):
         
         # 2. source sentence
         source = f"{persona_tag} {row['source']}"
-        source_ids = [self.bos] + self.tokenizer(source, add_special_tokens=False)["input_ids"] + [self.eos]
+        source_ids = self.tokenizer(source, add_special_tokens=False)["input_ids"]
         source_attention_mask = [1] * len(source_ids)
 
         # 3. target sentence
