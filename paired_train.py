@@ -32,6 +32,21 @@ persona_list = {
     'translator': '번역기'
 }
 
+emoticon_sentences = df[df['label'] == 'emoticon']['target'].astype(str).tolist()
+unk_strings = set()
+
+for sentence in emoticon_sentences:
+    for char in sentence:
+        tokenized = tokenizer(char)
+        if tokenized.input_ids[-1] == tokenizer.unk_token_id:
+            unk_strings.add(char)
+
+unk_list = list(unk_strings)
+
+print(f"{len(unk_list)} new tokens added to tokenizer.")
+
+tokenizer.add_tokens(unk_list)
+model.resize_token_embeddings(len(tokenizer))
 
 print(len(df))
 train_df, val_df = train_test_split(df, test_size=0.1, stratify=df['label'], random_state=42)
